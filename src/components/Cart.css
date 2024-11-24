@@ -1,0 +1,24 @@
+.cart {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Pastikan berada di atas elemen lain */
+  }
+  
+  .cart button {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .cart button:hover {
+    background-color: #008c9e;
+  }
+  

@@ -3,8 +3,9 @@ import './Makanan.css';
 import MenuItem from '../components/MenuItem';
 import Navbar from '../components/Navbar';
 import "../components/Overlay.css";
+import Cart from '../components/Cart';
 
-const Makanan = () => {
+const Makanan = ({ addToCart }) => {
   const [search] = useState('');
   
   const menuItems = [
@@ -16,6 +17,21 @@ const Makanan = () => {
 
   const filteredMenu = menuItems.filter(item =>
     item.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h1>Menu Makanan</h1>
+      <div>
+        {menuItems.map((food) => (
+          <div key={food.id} style={{ marginBottom: "10px" }}>
+            <p>{food.name}</p>
+            <p>Harga: Rp {food.price.toLocaleString()}</p>
+            <button onClick={() => addToCart(food)}>Tambah ke Keranjang</button>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 
   return (

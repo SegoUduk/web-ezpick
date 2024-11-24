@@ -1,67 +1,74 @@
 .profile-menu {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    width: 250px;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .profile-menu-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #ff6347;
-  }
-  
-  .close-button:hover {
-    color: #e5533d;
-  }
-  
-  .profile-menu-image {
-    width: 60px; /* Ukuran gambar */
-    height: 60px;
-    border-radius: 50%; /* Membuat gambar menjadi bulat */
-    object-fit: cover; /* Agar gambar tidak terdistorsi */
-    margin-right: 20px;
-  }
-  
-  .profile-menu-item {
-    width: 100%;
-    padding: 10px;
-    background-color: #ff6347;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .profile-menu-item:hover {
-    background-color: #e5533d;
-  }
-  
-  .logout-button {
-    background-color: #f44336; /* Warna tombol logout */
-  }
-  
-  .logout-button:hover {
-    background-color: #d32f2f;
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white; /* Background putih untuk menu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-menu-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-menu-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ff6347;
+}
+
+.close-button:hover {
+  color: #e5533d;
+}
+
+.profile-menu-image {
+  width: 60px; /* Ukuran gambar */
+  height: 60px;
+  border-radius: 50%; /* Membuat gambar menjadi bulat */
+  object-fit: cover; /* Agar gambar tidak terdistorsi */
+  margin-right: 20px;
+}
+
+.profile-menu-item {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.profile-menu-item:hover {
+  background-color: #e5533d;
+}
+
+.logout-button {
+  background-color: #f44336; /* Warna tombol logout */
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
