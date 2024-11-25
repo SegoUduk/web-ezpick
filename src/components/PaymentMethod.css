@@ -1,0 +1,25 @@
+.payment-method {
+  margin-top: 20px;
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.payment-option {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.payment-option img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: transform 0.3s ease; /* Efek transisi saat hover */
+}
+
+.payment-option:hover img {
+  transform: scale(1.1); /* Membesar sedikit saat hover */
+}

@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import './Promo.css';
 import MenuItem from '../components/MenuItem';
+import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import ProfileMenu from '../components/ProfileMenu';
+import CartPopup from "../components/CartPopup"; // Impor CartPopup
 import "../components/Overlay.css";
 
 const Promo = () => {
+  const { isLoggedIn, logout } = useAuth();
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [cart, setCart] = useState([]); // State untuk keranjang
+  const [showCartPopup, setShowCartPopup] = useState(false);
   const [search] = useState('');
   
   const menuItems = [
@@ -18,12 +25,30 @@ const Promo = () => {
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const addToCart = (item) => {
+    // Periksa apakah item sudah ada dalam keranjang
+    const existingItem = cart.find(cartItem => cartItem.name === item.name);
+    if (existingItem) {
+      // Jika item sudah ada, update jumlahnya
+      setCart(cart.map(cartItem =>
+        cartItem.name === item.name
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      ));
+    } else {
+      // Jika item belum ada, tambahkan item ke keranjang dengan quantity 1
+      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
+    }
+    setShowCartPopup(true); // Tampilkan popup keranjang
+  };
+
   return (
     <div className="Promo">
+      {showProfileMenu && <div className="overlay" onClick={() => setShowProfileMenu(false)}></div>}
       <Navbar
-        isLoggedIn={false}
+        isLoggedIn={isLoggedIn}
         handleLoginClick={() => {}}
-        handleProfileClick={() => {}}
+        handleProfileClick={() => setShowProfileMenu(!showProfileMenu)}
       />
 
       <div className="hero-section">
@@ -45,10 +70,26 @@ const Promo = () => {
               name={item.name}
               price={item.price}
               image={item.image}
+              onAddToCart={() => addToCart(item)}
             />
           ))}
         </div>
       </div>
+
+      {showCartPopup && (
+        <CartPopup 
+          cart={cart} 
+          onClose={() => setShowCartPopup(false)} // Fungsi untuk menutup popup
+        />
+      )}
+
+            {/* Tampilkan ProfileMenu jika state-nya true */}
+            {showProfileMenu && isLoggedIn && (
+        <ProfileMenu
+          onLogout={logout}
+          onClose={() => setShowProfileMenu(false)}
+        />
+      )}
     </div>
   );
 };

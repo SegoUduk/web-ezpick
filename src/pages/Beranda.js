@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // Import useAuth for global login state
 import Navbar from "../components/Navbar";
 import LoginPopup from "../components/LoginPopup";
 import RegisterPopup from "../components/RegisterPopup";
 import ProfileMenu from "../components/ProfileMenu";
-import MenuPopup from "../components/MenuPopup"; // Import the MenuPopup component
+import MenuPopup from "../components/MenuPopup"; // Import MenuPopup
 import "./Beranda.css";
 import "../components/Overlay.css";
 
 const Beranda = () => {
+  const { isLoggedIn, login, logout } = useAuth(); // Use context for global login state
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showRegisterPopup, setShowRegisterPopup] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showMenuPopup, setShowMenuPopup] = useState(false); // State for MenuPopup
 
   const handleLoginClick = () => setShowLoginPopup(true);
@@ -22,20 +23,15 @@ const Beranda = () => {
   };
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    login(); // Use login function from context
     setShowLoginPopup(false);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setShowProfileMenu(false);
   };
 
   const closePopup = () => {
     setShowLoginPopup(false);
     setShowRegisterPopup(false);
     setShowProfileMenu(false);
-    setShowMenuPopup(false); // Close MenuPopup when needed
+    setShowMenuPopup(false);
   };
 
   const handleProfileClick = () => setShowProfileMenu(!showProfileMenu);
@@ -91,7 +87,7 @@ const Beranda = () => {
 
       {showProfileMenu && isLoggedIn && (
         <ProfileMenu
-          onLogout={handleLogout}
+          onLogout={logout} // Use logout function from context
           onClose={() => setShowProfileMenu(false)}
         />
       )}

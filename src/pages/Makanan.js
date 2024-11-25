@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import './Makanan.css';
 import MenuItem from '../components/MenuItem';
+import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import ProfileMenu from '../components/ProfileMenu';
+import CartPopup from '../components/CartPopup';
 import "../components/Overlay.css";
-import Cart from '../components/Cart';
 
-const Makanan = ({ addToCart }) => {
+const Makanan = () => {
+  const { isLoggedIn, logout } = useAuth();
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [cart, setCart] = useState([]); // State untuk keranjang
+  const [showCartPopup, setShowCartPopup] = useState(false);
   const [search] = useState('');
   
   const menuItems = [
@@ -19,27 +25,31 @@ const Makanan = ({ addToCart }) => {
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  return (
-    <div>
-      <h1>Menu Makanan</h1>
-      <div>
-        {menuItems.map((food) => (
-          <div key={food.id} style={{ marginBottom: "10px" }}>
-            <p>{food.name}</p>
-            <p>Harga: Rp {food.price.toLocaleString()}</p>
-            <button onClick={() => addToCart(food)}>Tambah ke Keranjang</button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  const addToCart = (item) => {
+    // Periksa apakah item sudah ada dalam keranjang
+    const existingItem = cart.find(cartItem => cartItem.name === item.name);
+    if (existingItem) {
+      // Jika item sudah ada, update jumlahnya
+      setCart(cart.map(cartItem =>
+        cartItem.name === item.name
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      ));
+    } else {
+      // Jika item belum ada, tambahkan item ke keranjang dengan quantity 1
+      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
+    }
+    setShowCartPopup(true); // Tampilkan popup keranjang
+  };
+
 
   return (
     <div className="Makanan">
+      {showProfileMenu && <div className="overlay" onClick={() => setShowProfileMenu(false)}></div>}
       <Navbar
-        isLoggedIn={false}
+        isLoggedIn={isLoggedIn}
         handleLoginClick={() => {}}
-        handleProfileClick={() => {}}
+        handleProfileClick={() => setShowProfileMenu(!showProfileMenu)}
       />
 
       <div className="hero-section">
@@ -51,7 +61,7 @@ const Makanan = ({ addToCart }) => {
         <h1 className="hero-text">Klik, Pilih, Nikmati</h1>
       </div>
 
-      <div className="breadcrumb">Home/Makanan</div>
+      <div className="breadcrumb">Home/Muniman</div>
 
       <div className="menu-section">
         <div className="menu-grid">
@@ -61,10 +71,25 @@ const Makanan = ({ addToCart }) => {
               name={item.name}
               price={item.price}
               image={item.image}
+              onAddToCart={() => addToCart(item)}
             />
           ))}
         </div>
       </div>
+
+      {showCartPopup && (
+        <CartPopup 
+          cart={cart} 
+          onClose={() => setShowCartPopup(false)} // Fungsi untuk menutup popup
+        />
+      )}
+
+      {showProfileMenu && isLoggedIn && (
+        <ProfileMenu
+          onLogout={logout}
+          onClose={() => setShowProfileMenu(false)}
+        />
+          )}
     </div>
   );
 };
