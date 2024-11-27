@@ -26,20 +26,32 @@ const Paket = () => {
   );
 
   const addToCart = (item) => {
-    // Periksa apakah item sudah ada dalam keranjang
     const existingItem = cart.find(cartItem => cartItem.name === item.name);
     if (existingItem) {
-      // Jika item sudah ada, update jumlahnya
       setCart(cart.map(cartItem =>
         cartItem.name === item.name
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
           : cartItem
       ));
     } else {
-      // Jika item belum ada, tambahkan item ke keranjang dengan quantity 1
       setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
     }
-    setShowCartPopup(true); // Tampilkan popup keranjang
+    setShowCartPopup(true);
+  };
+
+  const removeFromCart = (item) => {
+    const existingItem = cart.find(cartItem => cartItem.name === item.name);
+    if (existingItem) {
+      if (existingItem.quantity > 1) {
+        setCart(cart.map(cartItem =>
+          cartItem.name === item.name
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        ));
+      } else {
+        setCart(cart.filter(cartItem => cartItem.name !== item.name));
+      }
+    }
   };
 
   return (
@@ -70,7 +82,7 @@ const Paket = () => {
               name={item.name}
               price={item.price}
               image={item.image}
-              onAddToCart={() => addToCart(item)} // Panggil fungsi addToCart
+              onAddToCart={() => addToCart(item)}
             />
           ))}
         </div>
@@ -79,7 +91,9 @@ const Paket = () => {
       {showCartPopup && (
         <CartPopup 
           cart={cart} 
-          onClose={() => setShowCartPopup(false)} // Fungsi untuk menutup popup
+          onAdd={(item) => addToCart(item)} 
+          onRemove={(item) => removeFromCart(item)} 
+          onClose={() => setShowCartPopup(false)} 
         />
       )}
 
