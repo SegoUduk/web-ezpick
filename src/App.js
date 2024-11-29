@@ -8,6 +8,7 @@ import Promo from "./pages/Promo";
 import Paket from "./pages/Paket";
 import Makanan from "./pages/Makanan";
 import Minuman from "./pages/Minuman";
+import OrderSummary from "./components/OrderSummary";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/Paket" element={<Paket />} />
             <Route path="/Makanan" element={<Makanan />} />
             <Route path="/Minuman" element={<Minuman />} />
+            <Route path="/OrderSummary" element={<OrderSummary />} />
           </Routes>
         </Router>
       </CartProvider>

@@ -1,25 +1,47 @@
 .payment-method {
-  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
 
 .payment-options {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  margin-top: 10px;
 }
 
 .payment-option {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
 }
 
 .payment-option img {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
-  transition: transform 0.3s ease; /* Efek transisi saat hover */
 }
 
-.payment-option:hover img {
-  transform: scale(1.1); /* Membesar sedikit saat hover */
+.payment-option p {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.payment-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment-option.selected {
+  border: 2px solid #007bff;
+  background-color: #eaf4ff;
 }

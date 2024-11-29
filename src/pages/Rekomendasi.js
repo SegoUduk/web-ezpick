@@ -20,14 +20,14 @@ const Rekomendasi = () => {
     { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "chicken-katsu.jpg" },
     { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "ayam-geprek.jpg" },
     { id: 3, name: "Promo Pizza Special", price: 45000, image: "pizza-special.jpg" },
-    { id: 4, name: "Promo Minuman Paket", price: 25000, image: "minuman-paket.jpg" },
+    { id: 4, name: "Promo Minuman", price: 25000, image: "minuman-paket.jpg" },
   ];
 
   const affordableItems = [
     { id: 3, name: "Paket Nasi Goreng", price: 20000, image: "nasi-goreng.jpg" },
     { id: 4, name: "Paket Burger", price: 27000, image: "burger.jpg" },
     { id: 5, name: "Promo Pizza Special", price: 45000, image: "pizza-special.jpg" },
-    { id: 6, name: "Promo Minuman Paket", price: 25000, image: "minuman-paket.jpg" },
+    { id: 6, name: "Promo Minuman", price: 25000, image: "minuman-paket.jpg" },
   ];
 
   const filteredBestSeller = bestSellerItems.filter((item) =>
