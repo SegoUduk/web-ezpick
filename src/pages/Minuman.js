@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Minuman.css";
 import MenuItem from "../components/MenuItem";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 import Navbar from "../components/Navbar";
 import ProfileMenu from "../components/ProfileMenu";
 import CartPopup from "../components/CartPopup";
@@ -10,7 +11,7 @@ import "../components/Overlay.css";
 const Minuman = () => {
   const { isLoggedIn, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [cart, setCart] = useState([]); // State untuk keranjang
+  const { cart, addToCart, removeFromCart } = useCart(); // State untuk keranjang
   const [showCartPopup, setShowCartPopup] = useState(false); // State untuk popup keranjang
   const [search] = useState("");
 
@@ -24,41 +25,6 @@ const Minuman = () => {
   const filteredMenu = menuItems.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
-
-  // Fungsi untuk menambah item ke keranjang
-  const addToCart = (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
-    if (existingItem) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
-    }
-    setShowCartPopup(true); // Tampilkan popup keranjang
-  };
-
-  // Fungsi untuk mengurangi item dari keranjang
-  const removeFromCart = (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
-    if (existingItem) {
-      if (existingItem.quantity > 1) {
-        setCart(
-          cart.map((cartItem) =>
-            cartItem.name === item.name
-              ? { ...cartItem, quantity: cartItem.quantity - 1 }
-              : cartItem
-          )
-        );
-      } else {
-        setCart(cart.filter((cartItem) => cartItem.name !== item.name));
-      }
-    }
-  };
 
   return (
     <div className="Minuman">
@@ -88,7 +54,10 @@ const Minuman = () => {
               name={item.name}
               price={item.price}
               image={item.image}
-              onAddToCart={() => addToCart(item)}
+              onAddToCart={() => {
+                addToCart(item);
+                setShowCartPopup(true); // Tampilkan popup keranjang
+              }}
             />
           ))}
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Promo.css";
 import MenuItem from "../components/MenuItem";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext"; // Import hook useCart
 import Navbar from "../components/Navbar";
 import ProfileMenu from "../components/ProfileMenu";
 import CartPopup from "../components/CartPopup"; // Impor CartPopup
@@ -9,8 +10,8 @@ import "../components/Overlay.css";
 
 const Promo = () => {
   const { isLoggedIn, logout } = useAuth();
+  const { cart, addToCart, removeFromCart } = useCart(); // Akses cart dari context
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [cart, setCart] = useState([]); // State untuk keranjang
   const [showCartPopup, setShowCartPopup] = useState(false); // State untuk popup keranjang
   const [search] = useState("");
 
@@ -25,41 +26,6 @@ const Promo = () => {
   const filteredMenu = menuItems.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
-
-  // Fungsi untuk menambah item ke keranjang
-  const addToCart = (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
-    if (existingItem) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
-    }
-    setShowCartPopup(true); // Tampilkan popup keranjang
-  };
-
-  // Fungsi untuk mengurangi item dari keranjang
-  const removeFromCart = (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
-    if (existingItem) {
-      if (existingItem.quantity > 1) {
-        setCart(
-          cart.map((cartItem) =>
-            cartItem.name === item.name
-              ? { ...cartItem, quantity: cartItem.quantity - 1 }
-              : cartItem
-          )
-        );
-      } else {
-        setCart(cart.filter((cartItem) => cartItem.name !== item.name));
-      }
-    }
-  };
 
   return (
     <div className="Promo">
@@ -89,7 +55,10 @@ const Promo = () => {
               name={item.name}
               price={item.price}
               image={item.image}
-              onAddToCart={() => addToCart(item)}
+              onAddToCart={() => {
+                addToCart(item);
+                setShowCartPopup(true); // Tampilkan popup keranjang
+              }}
             />
           ))}
         </div>

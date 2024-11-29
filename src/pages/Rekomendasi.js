@@ -3,6 +3,7 @@ import "./Rekomendasi.css";
 import MenuItem from "../components/MenuItem";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
+import { useCart } from "../context/CartContext";
 import ProfileMenu from "../components/ProfileMenu";
 import CartPopup from "../components/CartPopup";
 import "../components/Overlay.css";
@@ -10,7 +11,7 @@ import "../components/Overlay.css";
 const Rekomendasi = () => {
   const { isLoggedIn, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [cart, setCart] = useState([]); // State untuk keranjang
+  const { cart, addToCart, removeFromCart } = useCart(); // State untuk keranjang
   const [showCartPopup, setShowCartPopup] = useState(false);
   const [search] = useState("");
 
@@ -36,39 +37,6 @@ const Rekomendasi = () => {
   const filteredAffordable = affordableItems.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
-
-  // Fungsi untuk menambah item ke keranjang
-  const addToCart = (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
-    if (existingItem) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
-    }
-    setShowCartPopup(true); // Tampilkan popup keranjang
-  };
-
-  // Fungsi untuk mengurangi item dari keranjang
-  const removeFromCart = (item) => {
-    const existingItem = cart.find((cartItem) => cartItem.name === item.name);
-    if (existingItem && existingItem.quantity > 1) {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setCart(cart.filter((cartItem) => cartItem.name !== item.name)); // Hapus item jika quantity sudah 1
-    }
-  };
 
   return (
     <div className="rekomendasi">
@@ -100,7 +68,10 @@ const Rekomendasi = () => {
               name={item.name}
               price={item.price}
               image={item.image}
-              onAddToCart={() => addToCart(item)} // Add item to cart
+              onAddToCart={() => {
+                addToCart(item);
+                setShowCartPopup(true); // Tampilkan popup keranjang
+            }}
             />
           ))}
         </div>
@@ -116,7 +87,10 @@ const Rekomendasi = () => {
               name={item.name}
               price={item.price}
               image={item.image}
-              onAddToCart={() => addToCart(item)} // Add item to cart
+              onAddToCart={() => {
+                addToCart(item);
+                setShowCartPopup(true); // Tampilkan popup keranjang
+            }}
             />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 import "./Paket.css";
 import MenuItem from "../components/MenuItem";
 import Navbar from "../components/Navbar";
@@ -10,7 +11,7 @@ import "../components/Overlay.css";
 const Paket = () => {
   const { isLoggedIn, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [cart, setCart] = useState([]); // State untuk keranjang
+  const { cart, addToCart, removeFromCart } = useCart(); // State untuk keranjang
   const [showCartPopup, setShowCartPopup] = useState(false); // State untuk popup keranjang
   const [search] = useState("");
 
@@ -24,35 +25,6 @@ const Paket = () => {
   const filteredMenu = menuItems.filter(item =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
-
-  const addToCart = (item) => {
-    const existingItem = cart.find(cartItem => cartItem.name === item.name);
-    if (existingItem) {
-      setCart(cart.map(cartItem =>
-        cartItem.name === item.name
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      ));
-    } else {
-      setCart((prevCart) => [...prevCart, { ...item, quantity: 1 }]);
-    }
-    setShowCartPopup(true);
-  };
-
-  const removeFromCart = (item) => {
-    const existingItem = cart.find(cartItem => cartItem.name === item.name);
-    if (existingItem) {
-      if (existingItem.quantity > 1) {
-        setCart(cart.map(cartItem =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        ));
-      } else {
-        setCart(cart.filter(cartItem => cartItem.name !== item.name));
-      }
-    }
-  };
 
   return (
     <div className="Paket">
@@ -82,8 +54,11 @@ const Paket = () => {
               name={item.name}
               price={item.price}
               image={item.image}
-              onAddToCart={() => addToCart(item)}
-            />
+              onAddToCart={() => {
+                addToCart(item);
+                setShowCartPopup(true);
+              }}
+              />
           ))}
         </div>
       </div>
