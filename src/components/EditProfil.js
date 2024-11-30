@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './EditProfil.css';
 
-const EditProfil = ({ onBack }) => {
+const EditProfil = ({ onBack, profileData, onUpdateProfile }) => {
+  const [name, setName] = useState(profileData.name);
+  const [photo, setPhoto] = useState(profileData.photo);
+
+  const handlePhotoChange = () => {
+    const newPhoto = window.prompt('Masukkan URL foto baru:', photo);
+    if (newPhoto) setPhoto(newPhoto);
+  };
+
+  const handleConfirm = () => {
+    onUpdateProfile({ name, photo });
+    onBack(); // Kembali ke menu utama
+  };
+
   return (
     <div className="edit-profil-container">
-      {/* Tombol kembali di kiri atas */}
       <button className="back-button" onClick={onBack}>
         ←
       </button>
       <h2 className="edit-profil-header">EDIT PROFIL</h2>
-      {/* Konten yang sudah ada sebelumnya */}
       <div className="edit-profil-content">
         <div className="edit-photo">
-          <div className="profile-photo"></div>
-          <button className="edit-photo-button">Ganti Profil</button>
+          <img src={photo} alt="Profile" className="profile-photo" />
+          <button className="edit-photo-button" onClick={handlePhotoChange}>
+            Ganti Profil
+          </button>
         </div>
         <input 
           type="text" 
           className="nickname-input" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
           placeholder="Ubah Nickname" 
         />
-        <button className="confirm-button">Konfirmasi</button>
+        <button className="confirm-button" onClick={handleConfirm}>
+          Konfirmasi
+        </button>
       </div>
     </div>
   );

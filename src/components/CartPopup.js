@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "./CartPopup.css";
 import PaymentMethod from "./PaymentMethod";
 
@@ -9,12 +9,12 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
   const [orderNote, setOrderNote] = useState("");
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
-  const navigate = useNavigate(); // Untuk navigasi ke halaman lain
+  const navigate = useNavigate();
 
   const handlePickupChange = (e) => {
     setPickupOption(e.target.value);
     if (e.target.value !== "Makan di Tempat") {
-      setNumberOfPeople(1); // Reset jumlah orang jika bukan "Makan di Tempat"
+      setNumberOfPeople(1);
     }
   };
 
@@ -35,8 +35,12 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
       orderNote,
       paymentMethod: selectedPaymentMethod,
       total: calculateTotal(),
-      time: new Date().toLocaleString(), // Waktu pembelian
+      time: new Date().toLocaleString(),
     };
+
+    // Simpan ke localStorage
+    const existingOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    localStorage.setItem("orderHistory", JSON.stringify([...existingOrders, orderData]));
 
     // Navigasi ke halaman OrderSummary dengan data order
     navigate("/OrderSummary", { state: orderData });
@@ -67,13 +71,9 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
             </li>
           ))}
         </ul>
-
-        {/* Total Harga */}
         <div className="total-price">
           <h3>Total: Rp{calculateTotal().toLocaleString()}</h3>
         </div>
-
-        {/* Opsi Pengambilan */}
         <div className="pickup-options">
           <h3>Opsi Pengambilan</h3>
           <label>
@@ -108,8 +108,6 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
             Diambil
           </label>
         </div>
-
-        {/* Catatan Pesanan */}
         <div className="order-note">
           <h3>Catatan untuk Pesanan</h3>
           <textarea
@@ -118,11 +116,7 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
             onChange={(e) => setOrderNote(e.target.value)}
           />
         </div>
-
-        {/* Metode Pembayaran */}
         <PaymentMethod onSelectPayment={(method) => setSelectedPaymentMethod(method)} />
-
-        {/* Tombol Beli */}
         <div className="purchase-button-container">
           <button className="purchase-button" onClick={handlePurchase}>
             Beli

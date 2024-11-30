@@ -1,34 +1,109 @@
 .riwayat-container {
-    background: #e0f7fa; /* Background biru muda kehijauan */
-    padding: 20px;
-    border-radius: 10px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .riwayat-header {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .riwayat-content {
-    background: #ffffff;
+  background: #e0f7fa; /* Background biru muda kehijauan */
+  padding: 20px;
+  border-radius: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.riwayat-header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.riwayat-content {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #0077cc;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #005499;
+}
+
+.riwayat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.riwayat-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.riwayat-item:last-child {
+  border-bottom: none;
+}
+
+.riwayat-item p {
+  margin: 5px 0;
+  color: #444;
+}
+
+.riwayat-item p strong {
+  color: #333;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .riwayat-container {
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 94%;
   }
-  
+
+  .riwayat-content {
+    padding: 10px;
+  }
+
+  .riwayat-header {
+    font-size: 20px;
+  }
+
   .back-button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #0077cc;
-    cursor: pointer;
-    margin-bottom: 20px;
+    font-size: 20px;
   }
-  
+
+  .riwayat-item {
+    padding: 8px 0;
+  }
+}
+
+.clear-history-button {
+  background-color: #ff4d4d; /* Warna merah */
+  color: #fff; /* Warna teks putih */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  align-self: flex-start;
+  transition: background-color 0.3s ease;
+}
+
+.clear-history-button:hover {
+  background-color: #e63939; /* Warna merah lebih gelap */
+}

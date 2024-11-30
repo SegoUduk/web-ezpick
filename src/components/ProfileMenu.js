@@ -6,9 +6,17 @@ import './ProfileMenu.css';
 
 const ProfileMenu = ({ onLogout, onClose }) => {
   const [currentPage, setCurrentPage] = useState('');
+  const [profileData, setProfileData] = useState({
+    name: 'Nama Pengguna', // Nama default
+    photo: 'https://via.placeholder.com/100', // Gambar default
+  });
 
   const handleNavigation = (page) => {
     setCurrentPage(page); // Navigasi ke halaman yang dipilih
+  };
+
+  const updateProfile = (updatedData) => {
+    setProfileData(updatedData); // Perbarui data profil
   };
 
   return (
@@ -19,11 +27,11 @@ const ProfileMenu = ({ onLogout, onClose }) => {
           <button className="close-button" onClick={onClose}>X</button>
           <div className="profile-menu-header">
             <img 
-              src="https://via.placeholder.com/100"
+              src={profileData.photo} 
               alt="Profile" 
               className="profile-menu-image" 
             />
-            <p>Nama Pengguna</p>
+            <p>{profileData.name}</p>
           </div>
           <button 
             className="profile-menu-item" 
@@ -59,7 +67,13 @@ const ProfileMenu = ({ onLogout, onClose }) => {
       {currentPage === 'Riwayat' && <Riwayat onBack={() => setCurrentPage('')} />}
 
       {/* Halaman Edit Profil */}
-      {currentPage === 'Edit Profil' && <EditProfil onBack={() => setCurrentPage('')} />}
+      {currentPage === 'Edit Profil' && (
+        <EditProfil 
+          onBack={() => setCurrentPage('')} 
+          profileData={profileData} 
+          onUpdateProfile={updateProfile} 
+        />
+      )}
     </div>
   );
 };
