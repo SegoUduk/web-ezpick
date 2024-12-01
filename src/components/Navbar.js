@@ -5,7 +5,7 @@ import "./Navbar.css";
 const Navbar = ({ isLoggedIn, handleLoginClick, handleProfileClick }) => (
   <header className="navbar">
     <div className="logo">
-      <img src="https://via.placeholder.com/100" alt="EZPick Logo" className="logo-image" />
+      <img src="logo.png" alt="EZPick Logo" className="logo-image" />
     </div>
     <nav className="nav-links">
       {/* Gunakan Link untuk navigasi */}

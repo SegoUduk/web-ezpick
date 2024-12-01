@@ -37,7 +37,7 @@ const Paket = () => {
 
       <div className="hero-section">
         <img
-          src="https://via.placeholder.com/1500x400"
+          src="baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />

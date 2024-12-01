@@ -37,7 +37,7 @@ const Minuman = () => {
 
       <div className="hero-section">
         <img
-          src="https://via.placeholder.com/1500x400"
+          src="baner.jpg"
           alt="Drink Banner"
           className="hero-banner"
         />

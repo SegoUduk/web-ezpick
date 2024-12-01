@@ -50,7 +50,7 @@ const Beranda = () => {
 
       <div className="hero-section">
         <img
-          src="https://via.placeholder.com/1500x400"
+          src="baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />
@@ -59,11 +59,11 @@ const Beranda = () => {
 
       <div className="categories">
         <Link to="/Promo" className="category-card">
-          <img src="https://via.placeholder.com/100" alt="Promo" />
+          <img src="promo.png" alt="Promo" />
           <p>Special Promo</p>
         </Link>
         <Link to="/Paket" className="category-card">
-          <img src="https://via.placeholder.com/100" alt="Paket" />
+          <img src="paket.jpeg" alt="Paket" />
           <p>Paket</p>
         </Link>
         <div
