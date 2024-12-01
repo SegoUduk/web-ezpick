@@ -1,122 +1,78 @@
-/* Admin Dashboard - Kontainer Utama */
+/* Styling untuk halaman Admin Dashboard */
 .admin-dashboard {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  height: 100vh;
 }
 
-/* Navbar */
-.admin-navbar {
-  background-color: #007bff;
-  color: white;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-}
-
-.admin-navbar .logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.admin-navbar .navbar-links {
-  display: flex;
-  gap: 20px;
-}
-
-.admin-navbar .navbar-links button {
-  background: transparent;
-  color: white;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.admin-navbar .navbar-links button:hover {
-  text-decoration: underline;
-}
-
-/* Konten Dashboard */
+/* Konten utama dashboard */
 .dashboard-content {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
 }
 
+/* Bagian kategori menu (Makanan/Minuman) */
 .menu-section {
-  width: 100%;
-  max-width: 1200px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .menu-category {
-  margin-bottom: 40px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
 }
 
 .menu-category h2 {
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.menu-items {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
 .menu-card {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
-  width: 200px;
   padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
   text-align: center;
-  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu-card:hover {
-  transform: scale(1.05);
-}
-
-.menu-image {
+.menu-card img {
   width: 100%;
   height: 150px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .menu-card p {
-  margin: 10px 0;
-  font-size: 16px;
+  margin: 5px 0;
+  font-size: 14px;
   color: #333;
 }
 
-/* Tombol Aksi */
 .menu-actions {
-  display: flex;
-  justify-content: space-between;
   margin-top: 20px;
+  display: flex;
+  gap: 10px;
 }
 
 .action-button {
   background-color: #007bff;
   color: white;
-  border: none;
   padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 5px;
   transition: background-color 0.3s;
 }
 
@@ -124,80 +80,161 @@
   background-color: #0056b3;
 }
 
-.menu-actions .action-button.cancel {
-  background-color: #ccc;
+.action-button:focus {
+  outline: none;
 }
 
-.menu-actions .action-button.cancel:hover {
-  background-color: #999;
-}
-
-/* Pop-Up Styling (Food Popup) */
-.popup {
+/* Styling untuk popup Add Food */
+.food-popup {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
-.popup-content {
+.food-popup-content {
   background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.popup-content h2 {
-  text-align: center;
-}
-
-.popup-content form {
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
 }
 
-.popup-content input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.food-popup-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
-.popup-content .preview-image {
+.food-popup-content input,
+.food-popup-content button {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  padding: 10px;
   margin-bottom: 10px;
-}
-
-.popup-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.popup-button {
-  padding: 10px 15px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
   border-radius: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
 }
 
-.popup-button:hover {
+.food-popup-content input[type="file"] {
+  padding: 5px;
+}
+
+.food-popup-content button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.food-popup-content button:hover {
   background-color: #0056b3;
 }
 
-.cancel {
+.food-popup-content button.cancel {
   background-color: #ccc;
 }
 
-.cancel:hover {
+.food-popup-content button.cancel:hover {
   background-color: #999;
+}
+
+.food-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Styling untuk Popup Edit Stok */
+.edit-stock-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-stock-popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-stock-popup-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.edit-stock-popup-content .preview-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.edit-stock-popup-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.edit-stock-popup-content .stock-status {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.edit-stock-popup-content button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-stock-popup-content button:hover {
+  background-color: #0056b3;
+}
+
+.edit-stock-popup-content button.cancel {
+  background-color: #ccc;
+}
+
+.edit-stock-popup-content button.cancel:hover {
+  background-color: #999;
+}
+
+.edit-stock-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
 }
