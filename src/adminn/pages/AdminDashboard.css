@@ -1,0 +1,75 @@
+/* Admin Dashboard Styling */
+.admin-dashboard {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  .dashboard-content {
+    padding: 20px;
+  }
+  
+  .menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .menu-category {
+    background-color: #dff4f7; /* Warna biru muda untuk kategori */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .menu-category h2 {
+    margin-bottom: 20px;
+    color: #000;
+  }
+  
+  .menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  
+  .menu-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .menu-card p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .menu-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .action-button {
+    background-color: #007bff; /* Warna tombol biru */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .action-button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -9,6 +9,9 @@ import Paket from "./pages/Paket";
 import Makanan from "./pages/Makanan";
 import Minuman from "./pages/Minuman";
 import OrderSummary from "./components/OrderSummary";
+import AdminLogin from "./adminn/component/AdminLogin";
+import AdminNavbar from "./adminn/component/AdminNavbar";
+import AdminDashboard from "./adminn/pages/AdminDashboard";
 
 const App = () => {
   return (
@@ -23,6 +26,9 @@ const App = () => {
             <Route path="/Makanan" element={<Makanan />} />
             <Route path="/Minuman" element={<Minuman />} />
             <Route path="/OrderSummary" element={<OrderSummary />} />
+            <Route path="/AdminLogin" element={<AdminLogin />} />
+            <Route path="/AdminNavbar" element={<AdminNavbar />} />
+            <Route path="/AdminDashboard" element={<AdminDashboard />} />
           </Routes>
         </Router>
       </CartProvider>

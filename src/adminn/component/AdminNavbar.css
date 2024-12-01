@@ -1,0 +1,50 @@
+.admin-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #343a40; /* Warna navbar */
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-navbar-logo img {
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .admin-navbar-menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .admin-navbar-menu button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .admin-navbar-menu button:hover {
+    background-color: #495057; /* Warna hover */
+    border-radius: 5px;
+  }
+  
+  .admin-navbar-logout button {
+    background-color: #dc3545; /* Warna merah untuk logout */
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .admin-navbar-logout button:hover {
+    background-color: #c82333; /* Warna hover merah */
+  }
+  
