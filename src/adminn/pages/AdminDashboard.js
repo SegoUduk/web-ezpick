@@ -1,8 +1,19 @@
-import React from "react";
-import AdminNavbar from "../component/AdminNavbar"; // Navbar Admin
+import React, { useState } from "react";
+import AdminNavbar from "../components/AdminNavbar"; // Navbar Admin
+import FoodPopup from "../components/AddFoodPopup"; // Popup untuk menambah makanan/minuman
 import "./AdminDashboard.css"; // CSS untuk halaman Admin
 
 const AdminDashboard = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State untuk membuka/tutup popup
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
     <div className="admin-dashboard">
       {/* Navbar */}
@@ -30,7 +41,9 @@ const AdminDashboard = () => {
                 ))}
             </div>
             <div className="menu-actions">
-              <button className="action-button">Tambah Makanan</button>
+              <button className="action-button" onClick={openPopup}>
+                Tambah Makanan
+              </button>
               <button className="action-button">Edit Stok</button>
             </div>
           </div>
@@ -54,11 +67,16 @@ const AdminDashboard = () => {
                 ))}
             </div>
             <div className="menu-actions">
-              <button className="action-button">Tambah Minuman</button>
+              <button className="action-button" onClick={openPopup}>
+                Tambah Minuman
+              </button>
               <button className="action-button">Edit Stok</button>
             </div>
           </div>
         </section>
+
+        {/* Food Popup */}
+        {isPopupOpen && <FoodPopup closePopup={closePopup} />}
       </div>
     </div>
   );
