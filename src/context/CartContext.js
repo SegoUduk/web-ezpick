@@ -4,7 +4,9 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState(null); // Tambahkan untuk menyimpan data pesanan
 
+  // Fungsi untuk menambahkan item ke keranjang
   const addToCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.name === item.name);
     if (existingItem) {
@@ -20,6 +22,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  // Fungsi untuk menghapus item dari keranjang
   const removeFromCart = (item) => {
     const existingItem = cart.find((cartItem) => cartItem.name === item.name);
     if (existingItem) {
@@ -37,8 +40,15 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  // Fungsi untuk menyimpan data pesanan
+  const saveOrder = (orderData) => {
+    setOrder(orderData);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, order, saveOrder }}
+    >
       {children}
     </CartContext.Provider>
   );

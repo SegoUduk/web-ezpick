@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import "./CartPopup.css";
 import PaymentMethod from "./PaymentMethod";
 
@@ -10,6 +11,7 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
 
   const navigate = useNavigate();
+  const { saveOrder } = useCart();
 
   const handlePickupChange = (e) => {
     setPickupOption(e.target.value);
@@ -28,7 +30,6 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
       return;
     }
 
-    // Data Pesanan
     const orderData = {
       cart,
       pickupOption,
@@ -39,8 +40,9 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
       time: new Date().toLocaleString(),
     };
 
-    // Navigasi ke halaman konfirmasi dengan data pesanan
-    navigate("/", { state: orderData });
+    saveOrder(orderData); // Simpan data pesanan ke context
+    navigate(); // Navigasi ke halaman konfirmasi
+    onClose(); // Tutup popup
   };
 
   return (
