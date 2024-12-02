@@ -28,6 +28,7 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
       return;
     }
 
+    // Data Pesanan
     const orderData = {
       cart,
       pickupOption,
@@ -38,12 +39,8 @@ const CartPopup = ({ cart, onAdd, onRemove, onClose }) => {
       time: new Date().toLocaleString(),
     };
 
-    // Simpan ke localStorage
-    const existingOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
-    localStorage.setItem("orderHistory", JSON.stringify([...existingOrders, orderData]));
-
-    // Navigasi ke halaman OrderSummary dengan data order
-    navigate("/OrderSummary", { state: orderData });
+    // Navigasi ke halaman konfirmasi dengan data pesanan
+    navigate("/", { state: orderData });
   };
 
   return (

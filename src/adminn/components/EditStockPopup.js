@@ -9,7 +9,7 @@ const EditStockPopup = ({ selectedItem, onSave, onCancel }) => {
   };
 
   return (
-    <div className="popup">
+    <div className="popup1">
       <div className="popup-content">
         <button className="close-button" onClick={onCancel}>X</button>
         <h2>Edit Stok</h2>

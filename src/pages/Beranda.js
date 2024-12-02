@@ -70,7 +70,7 @@ const Beranda = () => {
           className="category-card"
           onClick={() => setShowMenuPopup(true)} // Open MenuPopup when clicked
         >
-          <img src="https://via.placeholder.com/100" alt="Menu" />
+          <img src="menu.png" alt="Menu" />
           <p>Menu</p>
         </div>
       </div>

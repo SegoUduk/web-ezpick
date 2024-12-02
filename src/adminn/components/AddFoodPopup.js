@@ -19,7 +19,7 @@ const FoodPopup = ({ closePopup }) => {
   };
 
   return (
-    <div className="popup">
+    <div className="popup2">
       <div className="popup-content">
         <h2>Tambah Makanan</h2>
         <form>

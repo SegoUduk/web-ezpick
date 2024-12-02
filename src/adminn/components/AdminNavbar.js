@@ -18,8 +18,8 @@ const AdminNavbar = () => {
 
       {/* Bagian Menu */}
       <div className="admin-navbar-menu">
-        <button onClick={() => navigate("/edit-menu")}>Edit Menu</button>
-        <button onClick={() => navigate("/konfirmasi-pesanan")}>
+        <button onClick={() => navigate("/AdminDashboard")}>Edit Menu</button>
+        <button onClick={() => navigate("/ConfirmationPage")}>
           Konfirmasi Pesanan
         </button>
       </div>

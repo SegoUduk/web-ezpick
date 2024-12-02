@@ -12,6 +12,7 @@ import OrderSummary from "./components/OrderSummary";
 import AdminLogin from "./adminn/components/AdminLogin";
 import AdminNavbar from "./adminn/components/AdminNavbar";
 import AdminDashboard from "./adminn/pages/AdminDashboard";
+import ConfirmationPage from "./adminn/pages/ConfirmationPage";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/AdminLogin" element={<AdminLogin />} />
             <Route path="/AdminNavbar" element={<AdminNavbar />} />
             <Route path="/AdminDashboard" element={<AdminDashboard />} />
+            <Route path="/ConfirmationPage" element={<ConfirmationPage />} />
           </Routes>
         </Router>
       </CartProvider>

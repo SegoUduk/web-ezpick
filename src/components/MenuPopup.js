@@ -20,7 +20,7 @@ const MenuPopup = ({ onClose }) => {
         <h2>Pilih Menu</h2>
         <div className="menu-options">
           <div className="menu-option" onClick={handleFoodClick}>
-            <img src="https://via.placeholder.com/100" alt="Food" />
+            <img src="makanan.png" alt="Food" />
             <p>Makanan</p>
           </div>
           <div className="menu-option" onClick={handleDrinkClick}>
