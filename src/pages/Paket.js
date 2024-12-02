@@ -37,7 +37,7 @@ const Paket = () => {
 
       <div className="hero-section">
         <img
-          src="baner.jpg"
+          src="/gambar/baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />

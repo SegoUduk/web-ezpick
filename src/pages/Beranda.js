@@ -50,7 +50,7 @@ const Beranda = () => {
 
       <div className="hero-section">
         <img
-          src="baner.jpg"
+          src="/gambar/baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />
@@ -59,18 +59,18 @@ const Beranda = () => {
 
       <div className="categories">
         <Link to="/Promo" className="category-card">
-          <img src="promo.png" alt="Promo" />
+          <img src="/gambar/promo.png" alt="Promo" />
           <p>Special Promo</p>
         </Link>
         <Link to="/Paket" className="category-card">
-          <img src="paket.jpeg" alt="Paket" />
+          <img src="/gambar/paket.jpeg" alt="Paket" />
           <p>Paket</p>
         </Link>
         <div
           className="category-card"
           onClick={() => setShowMenuPopup(true)} // Open MenuPopup when clicked
         >
-          <img src="menu.png" alt="Menu" />
+          <img src="/gambar/menu.png" alt="Menu" />
           <p>Menu</p>
         </div>
       </div>

@@ -16,7 +16,7 @@ const Makanan = () => {
   const [search] = useState("");
 
   const menuItems = [
-    { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "katsu.jpeg" },
+    { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "/gambar/katsu.jpeg" },
     { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "ayam-geprek.jpg" },
     { id: 3, name: "Paket Nasi Goreng", price: 20000, image: "nasi-goreng.jpg" },
     { id: 4, name: "Paket Burger", price: 27000, image: "burger.jpg" },

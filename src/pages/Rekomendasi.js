@@ -17,8 +17,8 @@ const Rekomendasi = () => {
 
   // Menu Rekomendasi (Best Seller, Harga Terjangkau)
   const bestSellerItems = [
-    { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "katsu.jpeg" },
-    { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "ayam-geprek.jpg" },
+    { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "/images/katsu.jpeg" },
+    { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "/images/ayam-geprek.jpg" },
     { id: 3, name: "Promo Pizza Special", price: 45000, image: "pizza-special.jpg" },
     { id: 4, name: "Promo Minuman", price: 25000, image: "minuman-paket.jpg" },
   ];
@@ -43,13 +43,13 @@ const Rekomendasi = () => {
       {showProfileMenu && <div className="overlay" onClick={() => setShowProfileMenu(false)}></div>}
       <Navbar
         isLoggedIn={isLoggedIn}
-        handleLoginClick={() => {}}
+        handleLoginClick={() => { }}
         handleProfileClick={() => setShowProfileMenu(!showProfileMenu)}
       />
 
       <div className="hero-section">
         <img
-          src="baner.jpg"
+          src="/gambar/baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />
@@ -71,7 +71,7 @@ const Rekomendasi = () => {
               onAddToCart={() => {
                 addToCart(item);
                 setShowCartPopup(true); // Tampilkan popup keranjang
-            }}
+              }}
             />
           ))}
         </div>
@@ -90,7 +90,7 @@ const Rekomendasi = () => {
               onAddToCart={() => {
                 addToCart(item);
                 setShowCartPopup(true); // Tampilkan popup keranjang
-            }}
+              }}
             />
           ))}
         </div>
