@@ -5,6 +5,7 @@ const Riwayat = ({ onBack }) => {
   const [orderHistory, setOrderHistory] = useState([]);
 
   useEffect(() => {
+    // Ambil riwayat pesanan dari localStorage
     const storedOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
     setOrderHistory(storedOrders);
   }, []);

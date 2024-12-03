@@ -12,6 +12,20 @@ const ConfirmationPage = () => {
         navigate(-1); // Kembali ke halaman sebelumnya
     };
 
+    const handleConfirm = () => {
+        // Ambil riwayat pesanan yang sudah ada di localStorage
+        const storedOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+        // Tambahkan data pesanan saat ini ke riwayat
+        storedOrders.push(order);
+
+        // Simpan kembali ke localStorage
+        localStorage.setItem("orderHistory", JSON.stringify(storedOrders));
+
+        // Kembali ke halaman sebelumnya
+        navigate(-1);
+    };
+
     if (!order) {
         return (
             <div>
@@ -50,7 +64,9 @@ const ConfirmationPage = () => {
                         <button className="back-button" onClick={handleBack}>
                             Kembali
                         </button>
-                        <button className="confirm-button">Konfirmasi</button>
+                        <button className="confirm-button" onClick={handleConfirm}>
+                            Konfirmasi
+                        </button>
                     </div>
                 </div>
             </div>
