@@ -11,41 +11,59 @@ import "../components/Overlay.css";
 const Minuman = () => {
   const { isLoggedIn, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const { cart, addToCart, removeFromCart } = useCart(); // State untuk keranjang
-  const [showCartPopup, setShowCartPopup] = useState(false); // State untuk popup keranjang
-  const [search] = useState("");
+  const { cart, addToCart, removeFromCart } = useCart();
+  const [showCartPopup, setShowCartPopup] = useState(false);
+  const [search, setSearch] = useState("");
 
+  // Data menu minuman
   const menuItems = [
-    { id: 1, name: "Es Teh Manis", price: 8000, image: "es-teh-manis.jpg" },
-    { id: 2, name: "Kopi Susu", price: 15000, image: "kopi-susu.jpg" },
-    { id: 3, name: "Jus Alpukat", price: 20000, image: "jus-alpukat.jpg" },
-    { id: 4, name: "Soda Gembira", price: 18000, image: "soda-gembira.jpg" },
+    { id: 1, name: "Es Teh Manis", price: 8000, image: "/gambar/esteh.jpg" },
+    { id: 2, name: "Kopi Susu", price: 15000, image: "/gambar/kopisusu.jpeg" },
+    { id: 3, name: "Jus Alpukat", price: 20000, image: "/gambar/alpukat.jpg" },
+    { id: 4, name: "Soda Gembira", price: 18000, image: "/gambar/soda.jpg" },
   ];
 
+  // Filter menu berdasarkan pencarian
   const filteredMenu = menuItems.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="Minuman">
+      {/* Overlay untuk ProfileMenu */}
       {showProfileMenu && <div className="overlay" onClick={() => setShowProfileMenu(false)}></div>}
+      
+      {/* Navbar */}
       <Navbar
         isLoggedIn={isLoggedIn}
         handleLoginClick={() => alert("Silakan login")}
         handleProfileClick={() => setShowProfileMenu(!showProfileMenu)}
       />
 
+      {/* Hero Section */}
       <div className="hero-section">
         <img
-          src="baner.jpg"
+          src="/gambar/baner.jpg"
           alt="Drink Banner"
           className="hero-banner"
         />
-        <h1 className="hero-text">Klik, Pilih, Nikmati</h1>
+        <h1 className="hero-text">Minuman Favorit Anda</h1>
       </div>
 
-      <div className="breadcrumb">Home/Minuman</div>
+      {/* Breadcrumb */}
+      <div className="breadcrumb">Home / Minuman</div>
 
+      {/* Search Bar */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Cari minuman..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      {/* Menu Section */}
       <div className="menu-section">
         <div className="menu-grid">
           {filteredMenu.map((item) => (
@@ -56,7 +74,7 @@ const Minuman = () => {
               image={item.image}
               onAddToCart={() => {
                 addToCart(item);
-                setShowCartPopup(true); // Tampilkan popup keranjang
+                setShowCartPopup(true);
               }}
             />
           ))}
@@ -67,9 +85,9 @@ const Minuman = () => {
       {showCartPopup && (
         <CartPopup
           cart={cart}
-          onAdd={(item) => addToCart(item)} // Fungsi untuk menambah item
-          onRemove={(item) => removeFromCart(item)} // Fungsi untuk mengurangi item
-          onClose={() => setShowCartPopup(false)} // Fungsi untuk menutup popup
+          onAdd={(item) => addToCart(item)}
+          onRemove={(item) => removeFromCart(item)}
+          onClose={() => setShowCartPopup(false)}
         />
       )}
 

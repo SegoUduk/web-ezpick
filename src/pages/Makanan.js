@@ -13,15 +13,17 @@ const Makanan = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const { cart, addToCart, removeFromCart } = useCart(); // State untuk keranjang
   const [showCartPopup, setShowCartPopup] = useState(false); // State untuk popup keranjang
-  const [search] = useState("");
+  const [search, setSearch] = useState("");
 
+  // Data menu
   const menuItems = [
     { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "/gambar/katsu.jpeg" },
-    { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "ayam-geprek.jpg" },
-    { id: 3, name: "Paket Nasi Goreng", price: 20000, image: "nasi-goreng.jpg" },
-    { id: 4, name: "Paket Burger", price: 27000, image: "burger.jpg" },
+    { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "/gambar/geprek.jpg" },
+    { id: 3, name: "Paket Nasi Goreng", price: 20000, image: "/gambar/nasgor.jpg" },
+    { id: 4, name: "Paket Burger", price: 27000, image: "/gambar/burger.png" },
   ];
 
+  // Filter menu berdasarkan pencarian
   const filteredMenu = menuItems.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -35,17 +37,30 @@ const Makanan = () => {
         handleProfileClick={() => setShowProfileMenu(!showProfileMenu)}
       />
 
+      {/* Hero Section */}
       <div className="hero-section">
         <img
-          src="baner.jpg"
+          src="/gambar/baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />
         <h1 className="hero-text">Klik, Pilih, Nikmati</h1>
       </div>
 
-      <div className="breadcrumb">Home/Makanan</div>
+      {/* Breadcrumb */}
+      <div className="breadcrumb">Home / Makanan</div>
 
+      {/* Search Bar */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Cari menu..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      {/* Menu Section */}
       <div className="menu-section">
         <div className="menu-grid">
           {filteredMenu.map((item) => (
@@ -63,13 +78,13 @@ const Makanan = () => {
         </div>
       </div>
 
-      {/* CartPopup */}
+      {/* Cart Popup */}
       {showCartPopup && (
         <CartPopup
           cart={cart}
-          onAdd={(item) => addToCart(item)} // Fungsi untuk menambah item
-          onRemove={(item) => removeFromCart(item)} // Fungsi untuk mengurangi item
-          onClose={() => setShowCartPopup(false)} // Fungsi untuk menutup popup
+          onAdd={(item) => addToCart(item)}
+          onRemove={(item) => removeFromCart(item)}
+          onClose={() => setShowCartPopup(false)}
         />
       )}
 

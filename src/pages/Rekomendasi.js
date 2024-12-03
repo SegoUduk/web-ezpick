@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./Rekomendasi.css";
 import MenuItem from "../components/MenuItem";
 import { useAuth } from "../context/AuthContext";
-import Navbar from "../components/Navbar";
 import { useCart } from "../context/CartContext";
+import Navbar from "../components/Navbar";
 import ProfileMenu from "../components/ProfileMenu";
 import CartPopup from "../components/CartPopup";
 import "../components/Overlay.css";
@@ -11,23 +11,23 @@ import "../components/Overlay.css";
 const Rekomendasi = () => {
   const { isLoggedIn, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const { cart, addToCart, removeFromCart } = useCart(); // State untuk keranjang
+  const { cart, addToCart, removeFromCart } = useCart();
   const [showCartPopup, setShowCartPopup] = useState(false);
-  const [search] = useState("");
+  const [search, setSearch] = useState("");
 
-  // Menu Rekomendasi (Best Seller, Harga Terjangkau)
+  // Data rekomendasi (Best Seller & Harga Terjangkau)
   const bestSellerItems = [
-    { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "/images/katsu.jpeg" },
-    { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "/images/ayam-geprek.jpg" },
-    { id: 3, name: "Promo Pizza Special", price: 45000, image: "pizza-special.jpg" },
-    { id: 4, name: "Promo Minuman", price: 25000, image: "minuman-paket.jpg" },
+    { id: 1, name: "Paket Chicken Katsu", price: 25000, image: "/gambar/katsu.jpeg" },
+    { id: 2, name: "Paket Ayam Geprek", price: 22000, image: "/gambar/geprek.jpg" },
+    { id: 3, name: "Promo Pizza Special", price: 45000, image: "/gambar/pizza.jpg" },
+    { id: 4, name: "Promo Minuman", price: 25000, image: "/gambar/minuman.jpg" },
   ];
 
   const affordableItems = [
-    { id: 3, name: "Paket Nasi Goreng", price: 20000, image: "nasi-goreng.jpg" },
-    { id: 4, name: "Paket Burger", price: 27000, image: "burger.jpg" },
-    { id: 5, name: "Promo Pizza Special", price: 45000, image: "pizza-special.jpg" },
-    { id: 6, name: "Promo Minuman", price: 25000, image: "minuman-paket.jpg" },
+    { id: 5, name: "Paket Nasi Goreng", price: 20000, image: "/gambar/nasgor.jpg" },
+    { id: 6, name: "Paket Burger", price: 27000, image: "/gambar/burger.png" },
+    { id: 7, name: "Promo Pizza Special", price: 45000, image: "/gambar/pizza.jpg" },
+    { id: 8, name: "Promo Minuman", price: 25000, image: "/gambar/minuman.jpg" },
   ];
 
   const filteredBestSeller = bestSellerItems.filter((item) =>
@@ -39,24 +39,39 @@ const Rekomendasi = () => {
   );
 
   return (
-    <div className="rekomendasi">
+    <div className="Rekomendasi">
+      {/* Overlay untuk ProfileMenu */}
       {showProfileMenu && <div className="overlay" onClick={() => setShowProfileMenu(false)}></div>}
+      
+      {/* Navbar */}
       <Navbar
         isLoggedIn={isLoggedIn}
-        handleLoginClick={() => { }}
+        handleLoginClick={() => alert("Silakan login")}
         handleProfileClick={() => setShowProfileMenu(!showProfileMenu)}
       />
 
+      {/* Hero Section */}
       <div className="hero-section">
         <img
           src="/gambar/baner.jpg"
           alt="Food Banner"
           className="hero-banner"
         />
-        <h1 className="hero-text">Rekomendasi Makanan</h1>
+        <h1 className="hero-text">Rekomendasi Pilihan</h1>
       </div>
 
-      <div className="breadcrumb">Home/Rekomendasi</div>
+      {/* Breadcrumb */}
+      <div className="breadcrumb">Home / Rekomendasi</div>
+
+      {/* Search Bar */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Cari rekomendasi..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
       {/* Best Seller Section */}
       <div className="menu-section">
@@ -70,7 +85,7 @@ const Rekomendasi = () => {
               image={item.image}
               onAddToCart={() => {
                 addToCart(item);
-                setShowCartPopup(true); // Tampilkan popup keranjang
+                setShowCartPopup(true);
               }}
             />
           ))}
@@ -89,7 +104,7 @@ const Rekomendasi = () => {
               image={item.image}
               onAddToCart={() => {
                 addToCart(item);
-                setShowCartPopup(true); // Tampilkan popup keranjang
+                setShowCartPopup(true);
               }}
             />
           ))}
@@ -100,9 +115,9 @@ const Rekomendasi = () => {
       {showCartPopup && (
         <CartPopup
           cart={cart}
-          onClose={() => setShowCartPopup(false)} // Close cart popup
-          onAdd={addToCart}  // Pass addToCart for increasing quantity
-          onRemove={removeFromCart} // Pass removeFromCart for decreasing quantity
+          onAdd={(item) => addToCart(item)}
+          onRemove={(item) => removeFromCart(item)}
+          onClose={() => setShowCartPopup(false)}
         />
       )}
 
