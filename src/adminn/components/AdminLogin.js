@@ -18,6 +18,10 @@ const AdminLogin = () => {
     }
   };
 
+  const handleUserLoginRedirect = () => {
+    navigate("/"); // Arahkan ke halaman Beranda untuk pengguna biasa
+  };
+
   return (
     <div className="admin-login-container">
       <h2>Login Admin</h2>
@@ -40,6 +44,17 @@ const AdminLogin = () => {
           Login
         </button>
       </form>
+
+      {/* Button untuk kembali ke Beranda */}
+      <div className="redirect-container">
+        <button
+          type="button"
+          className="redirect-button"
+          onClick={handleUserLoginRedirect}
+        >
+          Beranda User
+        </button>
+      </div>
     </div>
   );
 };

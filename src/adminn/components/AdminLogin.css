@@ -1,82 +1,62 @@
-/* AdminLogin.css */
-
-/* Styling untuk container utama */
 .admin-login-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Memastikan halaman memenuhi tinggi layar */
-  background-color: #f8f9fa; /* Warna latar belakang */
+  justify-content: center;
+  background-color: #f4f4f4;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
   padding: 20px;
 }
 
-/* Heading untuk form */
-.admin-login-container h2 {
-  font-size: 2rem;
+h2 {
   color: #333;
   margin-bottom: 20px;
 }
 
-/* Styling form */
-.admin-login-container form {
+form {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 400px; /* Membatasi lebar form */
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  width: 300px;
 }
 
-/* Input fields */
-.admin-login-container input {
-  font-size: 1rem;
+input {
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ced4da;
+  margin: 5px 0;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  outline: none;
-  transition: all 0.3s ease;
+  font-size: 14px;
 }
 
-/* Efek hover dan fokus pada input */
-.admin-login-container input:focus {
-  border-color: #495057;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Tombol login */
-.admin-login-container .login-button {
-  font-size: 1rem;
-  padding: 10px;
+.login-button {
+  padding: 12px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 16px;
 }
 
-/* Hover efek untuk tombol login */
-.admin-login-container .login-button:hover {
+.login-button:hover {
   background-color: #0056b3;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .admin-login-container form {
-    padding: 20px;
-  }
+.redirect-container {
+  margin-top: 20px;
+}
 
-  .admin-login-container h2 {
-    font-size: 1.5rem;
-  }
+.redirect-button {
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-  .admin-login-container input,
-  .admin-login-container .login-button {
-    font-size: 0.9rem;
-  }
+.redirect-button:hover {
+  background-color: #218838;
 }
