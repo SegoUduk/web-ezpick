@@ -6,14 +6,14 @@ const PaymentMethod = ({ onSelectPayment }) => {
 
   // Daftar metode pembayaran
   const paymentOptions = [
-    { id: "gopay", name: "GoPay", image: "https://via.placeholder.com/60?text=GoPay" },
-    { id: "ovo", name: "OVO", image: "https://via.placeholder.com/60?text=OVO" },
-    { id: "dana", name: "Dana", image: "https://via.placeholder.com/60?text=Dana" },
-    { id: "linkaja", name: "LinkAja", image: "https://via.placeholder.com/60?text=LinkAja" },
-    { id: "bca", name: "BCA Mobile", image: "https://via.placeholder.com/60?text=BCA+Mobile" },
-    { id: "mandiri", name: "Mandiri Online", image: "https://via.placeholder.com/60?text=Mandiri+Online" },
-    { id: "bni", name: "BNI Mobile", image: "https://via.placeholder.com/60?text=BNI+Mobile" },
-    { id: "bri", name: "BRI Mobile", image: "https://via.placeholder.com/60?text=BRI+Mobile" },
+    { id: "gopay", name: "GoPay", image: "/gambar/gopay.png" },
+    { id: "ovo", name: "OVO", image: "/gambar/ovo.png" },
+    { id: "dana", name: "Dana", image: "/gambar/dana.webp" },
+    { id: "linkaja", name: "LinkAja", image: "/gambar/link.png" },
+    { id: "bca", name: "BCA Mobile", image: "/gambar/bca.png" },
+    { id: "mandiri", name: "Mandiri Online", image: "/gambar/mandiri.png" },
+    { id: "bni", name: "BNI Mobile", image: "/gambar/bni.png" },
+    { id: "bri", name: "BRI Mobile", image: "/gambar/bri.jpg" },
   ];
 
   const handlePaymentMethodChange = (method) => {
