@@ -15,8 +15,18 @@ const ProfileMenu = ({ onLogout, onClose }) => {
     setCurrentPage(page); // Navigasi ke halaman yang dipilih
   };
 
-  const updateProfile = (updatedData) => {
-    setProfileData(updatedData); // Perbarui data profil
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfileData((prevData) => ({
+          ...prevData,
+          photo: reader.result, // Perbarui foto profil
+        }));
+      };
+      reader.readAsDataURL(file); // Baca file sebagai data URL
+    }
   };
 
   return (
@@ -26,11 +36,19 @@ const ProfileMenu = ({ onLogout, onClose }) => {
         <div className="profile-menu-main">
           <button className="close-button" onClick={onClose}>X</button>
           <div className="profile-menu-header">
-            <img 
-              src={profileData.photo} 
-              alt="Profile" 
-              className="profile-menu-image" 
-            />
+            <div className="profile-image-wrapper">
+              <img 
+                src={profileData.photo} 
+                alt="Profile" 
+                className="profile-menu-image" 
+              />
+              <input 
+                type="file" 
+                accept="image/*" 
+                className="profile-image-input" 
+                onChange={handlePhotoChange} 
+              />
+            </div>
             <p>{profileData.name}</p>
           </div>
           <button 
@@ -71,7 +89,7 @@ const ProfileMenu = ({ onLogout, onClose }) => {
         <EditProfil 
           onBack={() => setCurrentPage('')} 
           profileData={profileData} 
-          onUpdateProfile={updateProfile} 
+          onUpdateProfile={setProfileData} 
         />
       )}
     </div>

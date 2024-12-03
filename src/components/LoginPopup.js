@@ -9,6 +9,7 @@ const LoginPopup = ({ onClose, onRegisterClick }) => {
 
   const handleUserLogin = () => {
     login("user"); // Login sebagai pengguna biasa
+    onClose(); // Menutup popup setelah login
     navigate("/"); // Arahkan ke halaman Beranda setelah login
   };
 
