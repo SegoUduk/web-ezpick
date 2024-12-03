@@ -1,240 +1,87 @@
-/* Styling untuk halaman Admin Dashboard */
 .admin-dashboard {
   font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  background-color: #f4f4f4;
+  min-height: 100vh;
 }
 
-/* Konten utama dashboard */
 .dashboard-content {
-  padding: 20px;
-  flex: 1;
-  overflow-y: auto;
+  margin: 20px;
 }
 
-/* Bagian kategori menu (Makanan/Minuman) */
 .menu-section {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-
-.menu-category {
-  padding: 15px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-}
-
-.menu-category h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.menu-items {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-.menu-card {
-  padding: 10px;
+.menu-category {
   background-color: #fff;
+  padding: 20px;
   border-radius: 8px;
-  text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.menu-card p {
-  margin: 5px 0;
-  font-size: 14px;
+.menu-category h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
   color: #333;
 }
 
-.menu-actions {
-  margin-top: 20px;
+.menu-items {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.menu-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+}
+
+.menu-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.menu-card p {
+  margin: 10px 0;
 }
 
 .action-button {
+  padding: 8px 16px;
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
 }
 
 .action-button:hover {
   background-color: #0056b3;
 }
 
-.action-button:focus {
-  outline: none;
-}
-
-/* Styling untuk popup Add Food */
-.food-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+.menu-actions {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  justify-content: flex-start;
+  margin-top: 20px;
 }
 
-.food-popup-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.food-popup-content h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.food-popup-content input,
-.food-popup-content button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-}
-
-.food-popup-content input[type="file"] {
-  padding: 5px;
-}
-
-.food-popup-content button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.food-popup-content button:hover {
-  background-color: #0056b3;
-}
-
-.food-popup-content button.cancel {
-  background-color: #ccc;
-}
-
-.food-popup-content button.cancel:hover {
-  background-color: #999;
-}
-
-.food-popup-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #333;
-  cursor: pointer;
-}
-
-/* Styling untuk Popup Edit Stok */
-.edit-stock-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.edit-stock-popup-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.edit-stock-popup-content h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.edit-stock-popup-content .preview-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.edit-stock-popup-content p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.edit-stock-popup-content .stock-status {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.edit-stock-popup-content button {
+.menu-actions button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.edit-stock-popup-content button:hover {
-  background-color: #0056b3;
-}
-
-.edit-stock-popup-content button.cancel {
-  background-color: #ccc;
-}
-
-.edit-stock-popup-content button.cancel:hover {
-  background-color: #999;
-}
-
-.edit-stock-popup-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #333;
-  cursor: pointer;
+.menu-actions button:hover {
+  background-color: #218838;
 }

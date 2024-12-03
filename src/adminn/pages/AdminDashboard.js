@@ -14,9 +14,10 @@ const AdminDashboard = () => {
 
   // Data dummy untuk makanan/minuman
   const [menuItems, setMenuItems] = useState([
-    { id: 1, name: "Paket Chicken Katsu", price: "Rp. 25.000", available: true, category: "Makanan", image: "https://via.placeholder.com/150" },
-    { id: 2, name: "Paket Iced Tea", price: "Rp. 15.000", available: true, category: "Minuman", image: "https://via.placeholder.com/150" },
-    // Tambahkan item lainnya
+    { id: 1, name: "Paket Chicken Katsu", price: "Rp. 25.000", available: true, category: "Makanan", image: "/gambar/katsu.jpeg" },
+    { id: 2, name: "Paket Iced Tea", price: "Rp. 15.000", available: true, category: "Minuman", image: "/gambar/esteh.jpg" },
+    { id: 3, name: "Paket Nasi Goreng", price: "Rp. 20.000", available: true, category: "Makanan", image: "/gambar/nasgor.jpg" },
+    { id: 4, name: "Paket Lemonade", price: "Rp. 18.000", available: false, category: "Minuman", image: "/gambar/lemon.webp" },
   ]);
 
   // Membuka popup tambah makanan/minuman

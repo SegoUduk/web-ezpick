@@ -13,7 +13,7 @@ const AdminNavbar = () => {
     <nav className="admin-navbar">
       {/* Bagian Logo */}
       <div className="admin-navbar-logo">
-        <img src="/logo.png" alt="Logo" />
+        <img src="/gambar/logo.png" alt="Logo" />
       </div>
 
       {/* Bagian Menu */}
